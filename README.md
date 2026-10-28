@@ -56,36 +56,6 @@ If any check fails, the build fails.
 
 ---
 
-## Deploying to Netlify
-
-`netlify.toml` is included. It builds with `npm run build`, publishes `dist/`, and sets security
-headers.
-
-**From Git:**
-
-1. Push this folder to a GitHub/GitLab/Bitbucket repository.
-2. In Netlify: **Add new site → Import an existing project** and select the repository.
-3. Netlify reads `netlify.toml`, so leave the build settings as detected:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-4. Click **Deploy**.
-
-**Without Git (drag and drop):**
-
-1. Run `npm run build`.
-2. Open **app.netlify.com/drop** and drop the `dist/` folder.
-
-> Drag-and-drop deploys do not read `netlify.toml`, so the CSP and other headers are **not**
-> applied. To keep the no-network CSP, deploy from Git or with the Netlify CLI:
-> `npx netlify-cli deploy --prod --dir=dist`.
-
-**No SPA redirect is needed.** ContextForge is one page with no client-side routes.
-
-**Content-Security-Policy** includes `connect-src 'none'`. The deployed page cannot make network
-requests at all, so project content cannot leave the browser even through a bug.
-
----
-
 ## How packaging works
 
 1. **Read.** Files are read locally through the File System Access API or the browser's folder
