@@ -1,0 +1,6 @@
+{
+  "apiBase": "https://api.example.com",
+  "retries": 5,
+  "dataFile": "data/data.csv",
+  "features": { "login": true, "export": false }
+}

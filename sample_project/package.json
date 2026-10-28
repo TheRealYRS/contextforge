@@ -1,0 +1,10 @@
+{
+  "name": "sample-test-framework",
+  "version": "1.2.0",
+  "type": "module",
+  "description": "Demonstration project for ContextForge.",
+  "main": "src/app.js",
+  "scripts": { "test": "node --test tests/", "start": "node src/app.js" },
+  "dependencies": { "dotenv": "^16.0.0" },
+  "devDependencies": { "jest": "^29.0.0" }
+}

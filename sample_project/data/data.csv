@@ -1,0 +1,5 @@
+id,scenario,expected,priority
+1,Login with valid credentials,success,High
+2,Login with invalid password,error,High
+3,Password reset flow,email sent,Medium
+4,Session timeout,redirect,Low

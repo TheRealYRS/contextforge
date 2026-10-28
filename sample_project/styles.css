@@ -1,0 +1,5 @@
+@import "theme.css";
+
+:root { --brand: #7c5cff; }
+body { font-family: system-ui, sans-serif; }
+#root { padding: 24px; background: url("assets/logo.png") no-repeat; }

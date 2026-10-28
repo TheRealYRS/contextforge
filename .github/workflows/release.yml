@@ -1,0 +1,46 @@
+name: Release Windows installer
+
+# Triggers automatically whenever you push a tag like "v1.0.0".
+# It builds the static app, packages it with Electron, creates a signed-off
+# NSIS Windows installer (.exe), and uploads it to a GitHub Release that
+# matches the tag (creating the release if it doesn't exist yet).
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch: {}   # lets you also trigger this manually from the Actions tab
+
+permissions:
+  contents: write   # required so electron-builder can create/attach the GitHub Release
+
+jobs:
+  build-windows-installer:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test suite
+        run: npm test
+
+      - name: Build static app
+        run: npm run build
+
+      - name: Build and publish Windows installer
+        run: npx electron-builder --win nsis --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload installer as workflow artifact (backup copy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: contextforge-windows-installer
+          path: release/*.exe
